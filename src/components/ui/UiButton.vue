@@ -11,7 +11,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  variant: 'primary'
+  variant: 'primary',
 })
 </script>
 
@@ -22,10 +22,8 @@ withDefaults(defineProps<Props>(), {
       rounded ? 'px-2.5 w-11 h-11' : 'px-5 py-2.5',
       {
         'bg-primary hover:bg-secondary text-white': variant === 'primary',
-        'bg-white hover:bg-gray-50 text-golden disabled:text-gray-200':
-          variant === 'secondary',
-        'bg-white hover:bg-gray-50 text-gray-300 disabled:text-gray-200':
-          variant === 'tertiary',
+        'bg-white hover:bg-gray-50 text-golden disabled:text-gray-200': variant === 'secondary',
+        'bg-white hover:bg-gray-50 text-gray-300 disabled:text-gray-200': variant === 'tertiary',
       },
     ]"
     :disabled="disabled"

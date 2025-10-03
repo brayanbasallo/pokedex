@@ -6,7 +6,7 @@ import type { Component } from 'vue'
 const props = defineProps<{
   modelValue: string
   type?: string
-  placeholder?: string,
+  placeholder?: string
   icon?: Component
 }>()
 const emits = defineEmits<{
@@ -15,10 +15,8 @@ const emits = defineEmits<{
 </script>
 
 <template>
-  <div 
-    class="p-3 bg-white rounded-md flex gap-2 items-center"
-  >
-    <component :is="icon" v-if="icon" class="w-4 h-4 text-gray-light"/>
+  <div class="p-3 bg-white rounded-md flex gap-2 items-center">
+    <component :is="icon" v-if="icon" class="w-4 h-4 text-gray-light" />
     <input
       class="w-full outline-none text-sm"
       :type="type"
