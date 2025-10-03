@@ -29,3 +29,20 @@ export async function getPokemonDetail(name: string): Promise<Pokemon> {
   const data: Pokemon = await response.json()
   return data
 }
+
+export async function searchPokemon(term: string): Promise<BasePokemon[]> {
+  if (!term) return []
+  try {
+    const response = await fetch(`${BASE_URL}/pokemon/${term.toLowerCase()}`)
+    if (!response.ok) {
+      return []
+    }
+    const data: Pokemon = await response.json()
+    return [{
+      name: data.name,
+      url: `${BASE_URL}/pokemon/${data.name}`
+    }]
+  } catch {
+    return []
+  }
+}

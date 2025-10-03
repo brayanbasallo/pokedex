@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { getPokedex, getPokemonDetail } from '@/api/pokemonApi'
+import { getPokedex, getPokemonDetail, searchPokemon } from '@/api/pokemonApi'
 import type { BasePokemon } from '@/api/pokemonApi'
 import type { Pokemon } from '@/types/pokemon'
 
@@ -47,6 +47,22 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
   }
 
+  async function searchPokemons(term: string) {
+    if (!term) {
+      await fetchPokedex()
+      return
+    }
+    loading.value = true
+    error.value = null
+    try {
+      pokedex.value = await searchPokemon(term)
+    } catch (err: any) {
+      error.value = err.message || 'Unknown error'
+    } finally {
+      loading.value = false
+    }
+  }
+
   async function fetchPokemonDetail(name: string) {
     loading.value = true
     error.value = null
@@ -70,5 +86,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
     toggleFavorite,
     fetchPokemonDetail,
     clearDetail,
+    searchPokemons,
   }
 })
