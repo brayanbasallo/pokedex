@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 
-type buttonVariant = 'primary' | 'secondary' | 'tertiary'
+type buttonVariant = 'primary' | 'secondary' | 'tertiary' | 'cuarter'
 
 interface Props {
   icon?: Component
@@ -24,6 +24,7 @@ withDefaults(defineProps<Props>(), {
         'bg-primary hover:bg-secondary text-white': variant === 'primary',
         'bg-gray-100 hover:bg-gray-50 text-golden disabled:text-gray-200': variant === 'secondary',
         'bg-gray-100 hover:bg-gray-50 text-gray-300 disabled:text-gray-200': variant === 'tertiary',
+        'bg-cgray-500 hover:bg-cgray-400 text-white disabled:text-gray-200': variant === 'cuarter',
       },
     ]"
     :disabled="disabled"

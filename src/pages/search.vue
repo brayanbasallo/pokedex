@@ -8,6 +8,7 @@ import BackToHome from '@/components/searcher/backToHome.vue'
 import Card from '@/components/pokemons/card.vue'
 import Details from '@/components/pokemons/details.vue'
 import loading from '@/components/common/loading.vue'
+import navigation from '@/components/common/navigation.vue'
 
 const pokedexStore = usePokedexStore()
 pokedexStore.fetchPokedex()
@@ -26,7 +27,8 @@ async function handleSearch(event: Event) {
     <div class="flex flex-col gap-4 w-full">
       <Card v-for="pokem in pokedexStore.listPokemons" :key="pokem.name" :pokem="pokem" />
     </div>
-    <BackToHome v-if="pokedexStore.pokedex.length === 0 && !pokedexStore.loading" />
+    <BackToHome v-if="pokedexStore.listPokemons.length === 0 && !pokedexStore.loading" />
     <loading v-else-if="pokedexStore.loading" />
+    <navigation />
   </main>
 </template>

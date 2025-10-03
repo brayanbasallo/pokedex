@@ -10,13 +10,15 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const detailPokemon = ref<Pokemon | null>(null)
   const loading = ref(false)
   const error = ref<string | null>(null)
+  const listAll = ref<boolean>(true)
 
-  const listPokemons = computed(() =>
-    pokedex.value.map((pokemon) => ({
+  const listPokemons = computed(() => {
+    const allPokemons = pokedex.value.map((pokemon) => ({
       ...pokemon,
       favorite: favorities.value.includes(pokemon.name),
-    })),
-  )
+    }))
+    return listAll.value ? allPokemons : allPokemons.filter((pokemon) => pokemon.favorite)
+  })
 
   const favoritePokemons = computed(() =>
     pokedex.value.filter((pokemon) => favorities.value.includes(pokemon.name)),
@@ -75,6 +77,10 @@ export const usePokedexStore = defineStore('pokedex', () => {
     }
   }
 
+  function setListAll(value: boolean) {
+    listAll.value = value
+  }
+
   return {
     pokedex,
     loading,
@@ -82,10 +88,12 @@ export const usePokedexStore = defineStore('pokedex', () => {
     favoritePokemons,
     listPokemons,
     detailPokemon,
+    listAll,
     fetchPokedex,
     toggleFavorite,
     fetchPokemonDetail,
     clearDetail,
     searchPokemons,
+    setListAll,
   }
 })
