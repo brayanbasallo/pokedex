@@ -4,11 +4,16 @@
   --color-primary: #f22539;
   --color-secondary: #c00e20;
   --color-golden: #eca539;
-  --color-gray-light: #bfbfbf;
+  --color-cgray-900: #353535;
+  --color-cgray-600: #5e5e5e;
+  --color-cgray-500: #bfbfbf;
+  --color-cgray-400: #e8e8e8;
+  --color-cgray-300: #f5f5f5;
+  --color-cgray-200: #f9f9f9;
 }
 
 p {
-  @apply text-gray-500;
+  @apply text-cgray-600;
 }
 
 html {
