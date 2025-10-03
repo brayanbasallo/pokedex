@@ -14,7 +14,7 @@ function toggleView(showAll: boolean) {
 </script>
 
 <template>
-    <nav class="fixed bottom-0 left-0 w-full bg-white shadow-md flex justify-center gap-4 py-3 z-10">
+    <nav class=" sticky bottom-0 left-0 w-full bg-white custom-shadow flex justify-center gap-4 py-3 z-10">
         <UiButton 
             class=" min-w-40 flex justify-center"
             :icon="iconList" 
@@ -33,3 +33,9 @@ function toggleView(showAll: boolean) {
         </UiButton>
     </nav>
 </template>
+
+<style scoped>
+.custom-shadow {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+</style>
