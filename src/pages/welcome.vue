@@ -10,8 +10,8 @@ const toSearch = () => {
 </script>
 
 <template>
-  <main class="max-w-md m-auto pt-20 px-6 flex flex-col items-center gap-12">
-    <img src="/imgs/pikachu.webp" alt="Pikachu saludando" class="w-48 mb-8 m-auto" />
+  <main class="max-w-md m-auto px-6 flex flex-col items-center gap-12 min-h-full justify-center">
+    <img src="/imgs/pikachu.webp" alt="Pikachu saludando" class="w-48 mx-auto" />
     <article class="flex flex-col gap-7">
       <h1 class="font-bold text-2xl text-center">Welcome to Pokédex</h1>
       <p class="text-center">

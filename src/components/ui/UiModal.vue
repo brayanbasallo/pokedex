@@ -16,7 +16,7 @@ const hide = () => {
 
 <template>
   <dialog
-    class="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-black/50 z-50 flex items-center justify-center"
+    class="fixed top-0 left-0 right-0 bottom-0 w-full h-full bg-black/50 z-50 flex items-center justify-center px-5"
     open
     v-if="open"
   >

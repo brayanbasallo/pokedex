@@ -21,7 +21,7 @@ async function handleSearch(event: Event) {
 </script>
 
 <template>
-  <main class="max-w-xl m-auto pt-20 px-6 flex flex-col items-center gap-12 min-h-screen">
+  <main class="max-w-xl m-auto py-9 px-7 flex flex-col items-center gap-12 min-h-screen">
     <UiInput v-model="searchTerm" :icon="Search" placeholder="Search" class="w-full" @input="handleSearch" />
     <Details />
     <div class="flex flex-col gap-4 w-full">
