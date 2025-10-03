@@ -52,7 +52,7 @@ const pokem = computed(() => {
         </p>
       </div>
       <div class="flex justify-between w-full">
-        <Share />        
+        <Share :pokemon="pokedexStore.detailPokemon" />        
         <favorite :pokem="pokem" /> 
       </div>
     </section>
