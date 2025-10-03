@@ -1,13 +1,8 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-
+import { getPokedex, getPokemonDetail } from '@/api/pokemonApi'
+import type { BasePokemon } from '@/api/pokemonApi'
 import type { Pokemon } from '@/types/pokemon'
-
-type BasePokemon = {
-  name: string
-  url: string
-  favorite?: boolean
-}
 
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokedex = ref<BasePokemon[]>([])
@@ -44,12 +39,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      if (!response.ok) {
-        throw new Error('Failed to fetch pokedex')
-      }
-      const data = await response.json()
-      pokedex.value = data.results
+      pokedex.value = await getPokedex()
     } catch (err: any) {
       error.value = err.message || 'Unknown error'
     } finally {
@@ -61,12 +51,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      if (!response.ok) {
-        throw new Error('Failed to fetch pokemon detail')
-      }
-      const data = await response.json()
-      detailPokemon.value = data
+      detailPokemon.value = await getPokemonDetail(name)
     } catch (err: any) {
       error.value = err.message || 'Unknown error'
     } finally {
