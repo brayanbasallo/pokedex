@@ -4,5 +4,13 @@
   --color-primary: #f22539;
   --color-secondary: #c00e20;
   --color-golden: #eca539;
-  --color-gray-light: #BFBFBF;
+  --color-gray-light: #bfbfbf;
+}
+
+p {
+  @apply text-gray-500;
+}
+
+html {
+  @apply bg-gray-50;
 }
