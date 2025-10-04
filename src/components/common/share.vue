@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import UiButton from '../ui/UiButton.vue'
-import UiBubbleNotification from '../ui/UiBubbleNotification.vue'
+import UiButton from '@/components/ui/UiButton.vue'
+import UiBubbleNotification from '@/components/ui/UiBubbleNotification.vue'
 import type { Pokemon } from '@/types/pokemon'
 
 const props = defineProps<{
@@ -12,14 +12,14 @@ const showNotification = ref(false)
 
 const handleShare = async () => {
   if (!props.pokemon) return
-  
+
   const details = [
     props.pokemon.name,
     `weight: ${props.pokemon.weight}`,
     `height: ${props.pokemon.height}`,
-    `types: ${props.pokemon.types?.map(type => type.type.name).join(', ')}`
+    `types: ${props.pokemon.types?.map((type) => type.type.name).join(', ')}`,
   ].join(', ')
-  
+
   await navigator.clipboard.writeText(details)
   showNotification.value = true
 }

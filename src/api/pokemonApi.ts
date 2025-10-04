@@ -15,10 +15,10 @@ type PokedexResponse = {
   results: BasePokemon[]
 }
 
-export async function getPokedex(url:string=""): Promise<PokedexResponse> {
-  let getUrl= `${BASE_URL}/pokemon?limit=20&offset=0`
-  if(url){
-    getUrl=url
+export async function getPokedex(url: string = ''): Promise<PokedexResponse> {
+  let getUrl = `${BASE_URL}/pokemon?limit=20&offset=0`
+  if (url) {
+    getUrl = url
   }
   const response = await fetch(getUrl)
   if (!response.ok) {
@@ -45,10 +45,12 @@ export async function searchPokemon(term: string): Promise<BasePokemon[]> {
       return []
     }
     const data: Pokemon = await response.json()
-    return [{
-      name: data.name,
-      url: `${BASE_URL}/pokemon/${data.name}`
-    }]
+    return [
+      {
+        name: data.name,
+        url: `${BASE_URL}/pokemon/${data.name}`,
+      },
+    ]
   } catch {
     return []
   }

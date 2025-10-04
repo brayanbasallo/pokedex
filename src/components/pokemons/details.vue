@@ -19,7 +19,7 @@ const characteristics = computed(() => [
 
 const pokem = computed(() => {
   return pokedexStore.listPokemons.find(
-    (pokemon) => pokemon.name === pokedexStore.detailPokemon?.name
+    (pokemon) => pokemon.name === pokedexStore.detailPokemon?.name,
   )
 })
 </script>
@@ -52,8 +52,8 @@ const pokem = computed(() => {
         </p>
       </div>
       <div class="flex justify-between w-full">
-        <Share :pokemon="pokedexStore.detailPokemon" />        
-        <favorite :pokem="pokem" /> 
+        <Share :pokemon="pokedexStore.detailPokemon" />
+        <favorite :pokem="pokem" />
       </div>
     </section>
   </UiModal>

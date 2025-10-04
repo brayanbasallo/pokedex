@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 import { usePokedexStore } from '@/stores/pokedex'
 
 import favorite from './favorite.vue'

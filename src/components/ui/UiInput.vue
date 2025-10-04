@@ -3,13 +3,13 @@ import { defineProps, defineEmits } from 'vue'
 
 import type { Component } from 'vue'
 
-const props = defineProps<{
+defineProps<{
   modelValue: string
   type?: string
   placeholder?: string
   icon?: Component
 }>()
-const emits = defineEmits<{
+defineEmits<{
   (e: 'update:modelValue', value: string | null): void
 }>()
 </script>

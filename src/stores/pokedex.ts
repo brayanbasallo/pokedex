@@ -42,7 +42,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await getPokedex(nextUrl.value || "")
+      const response = await getPokedex(nextUrl.value || '')
       nextUrl.value = response.next
       if (loadMore) {
         pokedex.value = [...pokedex.value, ...response.results]

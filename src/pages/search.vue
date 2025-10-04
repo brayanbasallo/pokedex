@@ -31,15 +31,21 @@ const handleSearch = debounce(async (event: Event) => {
 
 <template>
   <main class="max-w-xl m-auto py-9 px-7 flex flex-col items-center gap-12 min-h-screen">
-    <UiInput v-model="searchTerm" :icon="Search" placeholder="Search" class="w-full" @input="handleSearch" />
+    <UiInput
+      v-model="searchTerm"
+      :icon="Search"
+      placeholder="Search"
+      class="w-full"
+      @input="handleSearch"
+    />
     <Details />
     <div class="flex flex-col gap-4 w-full">
       <Card v-for="pokem in pokedexStore.listPokemons" :key="pokem.name" :pokem="pokem" />
     </div>
     <BackToHome v-if="pokedexStore.listPokemons.length === 0 && !pokedexStore.loading" />
     <loading v-else-if="pokedexStore.loading" />
-    <UiButton 
-      v-if="pokedexStore.nextUrl && !searchTerm && !pokedexStore.loading && pokedexStore.listAll" 
+    <UiButton
+      v-if="pokedexStore.nextUrl && !searchTerm && !pokedexStore.loading && pokedexStore.listAll"
       @click="pokedexStore.fetchPokedex(true)"
       class="mt-4"
     >
