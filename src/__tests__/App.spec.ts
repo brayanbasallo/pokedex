@@ -10,31 +10,31 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: Welcome
-    }
-  ]
+      component: Welcome,
+    },
+  ],
 })
 
 // Mock the Welcome component
 vi.mock('../pages/welcome.vue', () => ({
   default: {
     name: 'Welcome',
-    template: '<div>Welcome to Pokemon App</div>'
-  }
+    template: '<div>Welcome to Pokemon App</div>',
+  },
 }))
 
 describe('App', () => {
   it('renders router view properly', async () => {
     const wrapper = mount(App, {
       global: {
-        plugins: [router]
-      }
+        plugins: [router],
+      },
     })
-    
+
     // Navigate to home page
     await router.push('/')
     await router.isReady()
-    
+
     expect(wrapper.html()).toContain('div')
     expect(wrapper.classes()).toContain('app')
     expect(wrapper.classes()).toContain('h-screen')

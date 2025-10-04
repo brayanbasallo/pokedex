@@ -9,8 +9,8 @@ const mockToggleFavorite = vi.fn()
 
 vi.mock('../../../stores/pokedex', () => ({
   usePokedexStore: () => ({
-    toggleFavorite: mockToggleFavorite
-  })
+    toggleFavorite: mockToggleFavorite,
+  }),
 }))
 
 describe('Pokemon Favorite', () => {
@@ -22,15 +22,15 @@ describe('Pokemon Favorite', () => {
     const pokemon = {
       name: 'Pikachu',
       url: 'https://pokeapi.co/api/v2/pokemon/25/',
-      favorite: false
+      favorite: false,
     }
 
     const wrapper = mount(Favorite, {
       props: {
-        pokem: pokemon
-      }
+        pokem: pokemon,
+      },
     })
-    
+
     const button = wrapper.findComponent({ name: 'UiButton' })
     expect(button.exists()).toBe(true)
     expect(button.props('variant')).toBe('tertiary')
@@ -41,15 +41,15 @@ describe('Pokemon Favorite', () => {
     const pokemon = {
       name: 'Pikachu',
       url: 'https://pokeapi.co/api/v2/pokemon/25/',
-      favorite: true
+      favorite: true,
     }
 
     const wrapper = mount(Favorite, {
       props: {
-        pokem: pokemon
-      }
+        pokem: pokemon,
+      },
     })
-    
+
     const button = wrapper.findComponent({ name: 'UiButton' })
     expect(button.props('variant')).toBe('secondary')
   })
@@ -58,24 +58,24 @@ describe('Pokemon Favorite', () => {
     const pokemon = {
       name: 'Pikachu',
       url: 'https://pokeapi.co/api/v2/pokemon/25/',
-      favorite: false
+      favorite: false,
     }
 
     const wrapper = mount(Favorite, {
       props: {
-        pokem: pokemon
-      }
+        pokem: pokemon,
+      },
     })
-    
+
     await wrapper.findComponent({ name: 'UiButton' }).trigger('click')
-    
+
     expect(mockToggleFavorite).toHaveBeenCalledWith('Pikachu')
   })
 
   it('renders properly without pokemon data', () => {
     const wrapper = mount(Favorite)
     const button = wrapper.findComponent({ name: 'UiButton' })
-    
+
     expect(button.exists()).toBe(true)
     expect(button.props('variant')).toBe('tertiary')
   })
@@ -83,7 +83,7 @@ describe('Pokemon Favorite', () => {
   it('uses Start icon component', () => {
     const wrapper = mount(Favorite)
     const button = wrapper.findComponent({ name: 'UiButton' })
-    
+
     expect(button.props('icon')).toBeTruthy()
   })
 
@@ -91,31 +91,31 @@ describe('Pokemon Favorite', () => {
     const pokemon = {
       name: 'Pikachu',
       url: 'https://pokeapi.co/api/v2/pokemon/25/',
-      favorite: false
+      favorite: false,
     }
 
     const wrapper = mount(Favorite, {
       props: {
-        pokem: pokemon
-      }
+        pokem: pokemon,
+      },
     })
-    
+
     const button = wrapper.findComponent({ name: 'UiButton' })
     const buttonElement = button.find('button')
-    
+
     // Verificar que el evento click está configurado
     const clickHandlers = buttonElement.element.onclick
     expect(clickHandlers).toBeDefined()
-    
+
     // Simular un evento click y verificar que no se propaga
     const mockEvent = {
       stopPropagation: vi.fn(),
-      preventDefault: vi.fn()
+      preventDefault: vi.fn(),
     }
-    
+
     // Activar el evento click en el componente
     buttonElement.trigger('click')
-    
+
     // Verificar que la función toggleFavorite fue llamada
     expect(mockToggleFavorite).toHaveBeenCalled()
   })

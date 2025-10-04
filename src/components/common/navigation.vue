@@ -24,7 +24,7 @@ const goHome = () => {
   <nav
     class="sticky bottom-0 left-0 w-full bg-white custom-shadow flex justify-center gap-4 py-3 z-10"
   >
-    <UiButton :icon="Home" @click="goHome()" variant="cuarter" /> 
+    <UiButton :icon="Home" @click="goHome()" variant="cuarter" />
     <UiButton
       class="min-w-40 flex justify-center"
       :icon="iconList"

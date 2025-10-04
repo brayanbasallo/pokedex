@@ -12,6 +12,10 @@ const router = createRouter({
       component: search,
     },
   ],
+  // Ensure proper behavior on refresh
+  scrollBehavior() {
+    return { top: 0 }
+  },
 })
 
 export default router

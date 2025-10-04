@@ -7,8 +7,8 @@ describe('UiButton', () => {
   it('renders properly with default props', () => {
     const wrapper = mount(UiButton, {
       slots: {
-        default: 'Click me'
-      }
+        default: 'Click me',
+      },
     })
     expect(wrapper.text()).toBe('Click me')
     expect(wrapper.classes()).toContain('bg-primary')
@@ -16,12 +16,12 @@ describe('UiButton', () => {
 
   it('renders with different variants', () => {
     const variants = ['primary', 'secondary', 'tertiary', 'cuarter'] as const
-    variants.forEach(variant => {
+    variants.forEach((variant) => {
       const wrapper = mount(UiButton, {
         props: { variant },
-        slots: { default: 'Button' }
+        slots: { default: 'Button' },
       })
-      
+
       if (variant === 'primary') {
         expect(wrapper.classes()).toContain('bg-primary')
       } else if (variant === 'secondary') {
@@ -37,13 +37,13 @@ describe('UiButton', () => {
   it('renders with icon', () => {
     const wrapper = mount(UiButton, {
       props: {
-        icon: HomeIcon
+        icon: HomeIcon,
       },
       slots: {
-        default: 'Home'
-      }
+        default: 'Home',
+      },
     })
-    
+
     expect(wrapper.findComponent(HomeIcon).exists()).toBe(true)
     expect(wrapper.text()).toBe('Home')
   })
@@ -51,10 +51,10 @@ describe('UiButton', () => {
   it('applies rounded style when rounded prop is true', () => {
     const wrapper = mount(UiButton, {
       props: {
-        rounded: true
-      }
+        rounded: true,
+      },
     })
-    
+
     expect(wrapper.classes()).toContain('rounded-full')
     expect(wrapper.attributes('class')).toContain('w-11')
     expect(wrapper.attributes('class')).toContain('h-11')
@@ -63,10 +63,10 @@ describe('UiButton', () => {
   it('disables the button when disabled prop is true', () => {
     const wrapper = mount(UiButton, {
       props: {
-        disabled: true
-      }
+        disabled: true,
+      },
     })
-    
+
     expect(wrapper.attributes('disabled')).toBeDefined()
     expect(wrapper.classes()).toContain('disabled:bg-stone-400')
     expect(wrapper.classes()).toContain('disabled:cursor-not-allowed')

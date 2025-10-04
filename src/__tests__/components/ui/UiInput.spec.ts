@@ -7,10 +7,10 @@ describe('UiInput', () => {
   it('renders properly with default props', () => {
     const wrapper = mount(UiInput, {
       props: {
-        modelValue: ''
-      }
+        modelValue: '',
+      },
     })
-    
+
     expect(wrapper.find('input').exists()).toBe(true)
   })
 
@@ -19,10 +19,10 @@ describe('UiInput', () => {
     const wrapper = mount(UiInput, {
       props: {
         modelValue: '',
-        placeholder
-      }
+        placeholder,
+      },
     })
-    
+
     expect(wrapper.find('input').attributes('placeholder')).toBe(placeholder)
   })
 
@@ -30,10 +30,10 @@ describe('UiInput', () => {
     const wrapper = mount(UiInput, {
       props: {
         modelValue: '',
-        icon: SearchIcon
-      }
+        icon: SearchIcon,
+      },
     })
-    
+
     expect(wrapper.findComponent(SearchIcon).exists()).toBe(true)
     expect(wrapper.findComponent(SearchIcon).classes()).toContain('text-cgray-500')
   })
@@ -41,13 +41,13 @@ describe('UiInput', () => {
   it('emits update:modelValue event on input', async () => {
     const wrapper = mount(UiInput, {
       props: {
-        modelValue: ''
-      }
+        modelValue: '',
+      },
     })
-    
+
     const input = wrapper.find('input')
     await input.setValue('test value')
-    
+
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')![0]).toEqual(['test value'])
   })
@@ -56,25 +56,25 @@ describe('UiInput', () => {
     const wrapper = mount(UiInput, {
       props: {
         modelValue: '',
-        type: 'password'
-      }
+        type: 'password',
+      },
     })
-    
+
     expect(wrapper.find('input').attributes('type')).toBe('password')
   })
 
   it('applies correct base styling', () => {
     const wrapper = mount(UiInput, {
       props: {
-        modelValue: ''
-      }
+        modelValue: '',
+      },
     })
-    
+
     const container = wrapper.find('div')
     expect(container.classes()).toContain('bg-white')
     expect(container.classes()).toContain('rounded-md')
     expect(container.classes()).toContain('flex')
-    
+
     const input = wrapper.find('input')
     expect(input.classes()).toContain('w-full')
     expect(input.classes()).toContain('outline-none')

@@ -17,16 +17,14 @@ vi.mock('../../../stores/pokedex', () => ({
       sprites: {
         other: {
           'official-artwork': {
-            front_default: 'pikachu.png'
-          }
-        }
-      }
+            front_default: 'pikachu.png',
+          },
+        },
+      },
     },
-    listPokemons: [
-      { name: 'Pikachu', url: 'https://pokeapi.co/api/v2/pokemon/25/' }
-    ],
-    clearDetail: mockClearDetail
-  })
+    listPokemons: [{ name: 'Pikachu', url: 'https://pokeapi.co/api/v2/pokemon/25/' }],
+    clearDetail: mockClearDetail,
+  }),
 }))
 
 describe('Pokemon Details', () => {
@@ -36,7 +34,7 @@ describe('Pokemon Details', () => {
 
   it('renders properly with pokemon details', () => {
     const wrapper = mount(Details)
-    
+
     // Check if all characteristics are rendered
     expect(wrapper.text()).toContain('Name:')
     expect(wrapper.text()).toContain('Pikachu')
@@ -51,7 +49,7 @@ describe('Pokemon Details', () => {
   it('displays pokemon image', () => {
     const wrapper = mount(Details)
     const img = wrapper.find('img')
-    
+
     expect(img.exists()).toBe(true)
     expect(img.attributes('src')).toBe('pikachu.png')
     expect(img.attributes('alt')).toBe('Pikachu')
@@ -60,9 +58,9 @@ describe('Pokemon Details', () => {
   it('calls clearDetail when modal is closed', async () => {
     const wrapper = mount(Details)
     const modal = wrapper.findComponent({ name: 'UiModal' })
-    
+
     await modal.vm.$emit('update:open', false)
-    
+
     expect(mockClearDetail).toHaveBeenCalled()
   })
 
@@ -84,16 +82,16 @@ describe('Pokemon Details', () => {
 
   it('has correct styling classes', () => {
     const wrapper = mount(Details)
-    
+
     // Check background image container
     expect(wrapper.find('.bg-image').exists()).toBe(true)
-    
+
     // Check characteristics container styling
     const charContainer = wrapper.find('section')
     expect(charContainer.classes()).toContain('py-5')
     expect(charContainer.classes()).toContain('px-8')
     expect(charContainer.classes()).toContain('flex')
-    
+
     // Check characteristic item styling
     const charItem = wrapper.find('p')
     expect(charItem.classes()).toContain('p-2')
