@@ -16,7 +16,7 @@ const emits = defineEmits<{
 
 <template>
   <div class="p-3 bg-white rounded-md flex gap-2 items-center">
-    <component :is="icon" v-if="icon" class="w-4 h-4 text-gray-light" />
+    <component :is="icon" v-if="icon" class="w-4 h-4 text-cgray-500" />
     <input
       class="w-full outline-none text-sm"
       :type="type"

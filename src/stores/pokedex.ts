@@ -65,6 +65,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     error.value = null
     try {
       pokedex.value = await searchPokemon(term)
+      nextUrl.value = null
     } catch (err: any) {
       error.value = err.message || 'Unknown error'
     } finally {

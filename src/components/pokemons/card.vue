@@ -20,7 +20,7 @@ const pokedexStore = usePokedexStore()
 
 <template>
   <div
-    class="bg-white p-4 rounded-md w-full flex items-center justify-between cursor-pointer hover:shadow transition-shadow"
+    class="bg-white p-4 rounded-md w-full flex items-center justify-between cursor-pointer hover:shadow transition-shadow text-cgray-900"
     @click="pokedexStore.fetchPokemonDetail(pokem?.name || '')"
   >
     <p>
