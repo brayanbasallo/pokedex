@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const debounce = (fn: Function, delay: number) => {
+  let timeoutId: number
+  return (...args: any[]) => {
+    clearTimeout(timeoutId)
+    timeoutId = window.setTimeout(() => fn(...args), delay)
+  }
+}
+
 import { usePokedexStore } from '@/stores/pokedex'
 import UiInput from '@/components/ui/UiInput.vue'
 import UiButton from '@/components/ui/UiButton.vue'
@@ -15,10 +23,10 @@ const pokedexStore = usePokedexStore()
 pokedexStore.fetchPokedex()
 const searchTerm = ref('')
 
-async function handleSearch(event: Event) {
+const handleSearch = debounce(async (event: Event) => {
   const term = (event.target as HTMLInputElement).value
   await pokedexStore.searchPokemons(term)
-}
+}, 300)
 </script>
 
 <template>
