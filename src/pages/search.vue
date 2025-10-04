@@ -17,10 +17,14 @@ import BackToHome from '@/components/searcher/backToHome.vue'
 import Card from '@/components/pokemons/card.vue'
 import Details from '@/components/pokemons/details.vue'
 import loading from '@/components/common/loading.vue'
-import navigation from '@/components/common/navigation.vue'
 
 const pokedexStore = usePokedexStore()
-pokedexStore.fetchPokedex()
+
+// Solo cargar datos iniciales si no hay datos en el store
+if (pokedexStore.pokedex.length === 0 && !pokedexStore.loading) {
+  pokedexStore.fetchPokedex()
+}
+
 const searchTerm = ref('')
 
 const handleSearch = debounce(async (event: Event) => {
@@ -52,5 +56,4 @@ const handleSearch = debounce(async (event: Event) => {
       Load More
     </UiButton>
   </main>
-  <navigation />
 </template>
