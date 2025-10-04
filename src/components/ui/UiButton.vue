@@ -22,8 +22,8 @@ withDefaults(defineProps<Props>(), {
       rounded ? 'px-2.5 w-11 h-11' : 'px-5 py-2.5',
       {
         'bg-primary hover:bg-secondary text-white': variant === 'primary',
-        'bg-gray-100 hover:bg-gray-50 text-golden disabled:text-gray-200': variant === 'secondary',
-        'bg-gray-100 hover:bg-gray-50 text-gray-300 disabled:text-gray-200': variant === 'tertiary',
+        'bg-cgray-300 hover:bg-cgray-400 text-golden disabled:text-gray-200': variant === 'secondary',
+        'bg-cgray-300 hover:bg-cgray-200 text-cgray-400 disabled:text-gray-200': variant === 'tertiary',
         'bg-cgray-500 hover:bg-cgray-400 text-white disabled:text-gray-200': variant === 'cuarter',
       },
     ]"

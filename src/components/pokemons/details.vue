@@ -45,7 +45,7 @@ const pokem = computed(() => {
         <p
           v-for="characteristic in characteristics"
           :key="characteristic.label"
-          class="p-2 border-b last:border-0 border-gray-200 text-gray-800"
+          class="p-2 border-b last:border-0 border-gray-200 text-cgray-600"
         >
           <span class="font-bold"> {{ characteristic.label }}: </span>
           {{ characteristic.value }}
