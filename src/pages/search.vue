@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 import { usePokedexStore } from '@/stores/pokedex'
 import UiInput from '@/components/ui/UiInput.vue'
+import UiButton from '@/components/ui/UiButton.vue'
 import Search from '@/components/icons/search.vue'
 import BackToHome from '@/components/searcher/backToHome.vue'
 import Card from '@/components/pokemons/card.vue'
@@ -29,6 +30,13 @@ async function handleSearch(event: Event) {
     </div>
     <BackToHome v-if="pokedexStore.listPokemons.length === 0 && !pokedexStore.loading" />
     <loading v-else-if="pokedexStore.loading" />
+    <UiButton 
+      v-if="pokedexStore.nextUrl && !searchTerm && !pokedexStore.loading" 
+      @click="pokedexStore.fetchPokedex(true)"
+      class="mt-4"
+    >
+      Load More
+    </UiButton>
   </main>
   <navigation />
 </template>

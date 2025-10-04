@@ -11,6 +11,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const loading = ref(false)
   const error = ref<string | null>(null)
   const listAll = ref<boolean>(true)
+  const nextUrl = ref<string | null>(null)
 
   const listPokemons = computed(() => {
     const allPokemons = pokedex.value.map((pokemon) => ({
@@ -37,11 +38,17 @@ export const usePokedexStore = defineStore('pokedex', () => {
     detailPokemon.value = null
   }
 
-  async function fetchPokedex() {
+  async function fetchPokedex(loadMore = false) {
     loading.value = true
     error.value = null
     try {
-      pokedex.value = await getPokedex()
+      const response = await getPokedex(nextUrl.value || "")
+      nextUrl.value = response.next
+      if (loadMore) {
+        pokedex.value = [...pokedex.value, ...response.results]
+      } else {
+        pokedex.value = response.results
+      }
     } catch (err: any) {
       error.value = err.message || 'Unknown error'
     } finally {
@@ -89,6 +96,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     listPokemons,
     detailPokemon,
     listAll,
+    nextUrl,
     fetchPokedex,
     toggleFavorite,
     fetchPokemonDetail,

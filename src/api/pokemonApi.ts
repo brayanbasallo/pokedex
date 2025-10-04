@@ -9,16 +9,23 @@ export type BasePokemon = {
 }
 
 type PokedexResponse = {
+  count: number
+  next: string | null
+  previous: string | null
   results: BasePokemon[]
 }
 
-export async function getPokedex(): Promise<BasePokemon[]> {
-  const response = await fetch(`${BASE_URL}/pokemon?limit=151`)
+export async function getPokedex(url:string=""): Promise<PokedexResponse> {
+  let getUrl= `${BASE_URL}/pokemon?limit=20&offset=0`
+  if(url){
+    getUrl=url
+  }
+  const response = await fetch(getUrl)
   if (!response.ok) {
     throw new Error('Failed to fetch pokedex')
   }
   const data: PokedexResponse = await response.json()
-  return data.results
+  return data
 }
 
 export async function getPokemonDetail(name: string): Promise<Pokemon> {
