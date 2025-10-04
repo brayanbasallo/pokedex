@@ -61,7 +61,7 @@ const pokem = computed(() => {
 
 <style scoped>
 .bg-image {
-  background-image: url('public/imgs/background.webp');
+  background-image: url('/imgs/background.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
