@@ -39,7 +39,7 @@ const handleSearch = debounce(async (event: Event) => {
     <BackToHome v-if="pokedexStore.listPokemons.length === 0 && !pokedexStore.loading" />
     <loading v-else-if="pokedexStore.loading" />
     <UiButton 
-      v-if="pokedexStore.nextUrl && !searchTerm && !pokedexStore.loading" 
+      v-if="pokedexStore.nextUrl && !searchTerm && !pokedexStore.loading && pokedexStore.listAll" 
       @click="pokedexStore.fetchPokedex(true)"
       class="mt-4"
     >
